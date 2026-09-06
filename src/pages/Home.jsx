@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
@@ -199,55 +199,55 @@ const Home = () => {
         {/* 贴纸拼贴层 · 粗野字体风格 */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="/images/stickers/28e1e498fa69282c454b644b36a846d2.png"
+            src="./images/stickers/28e1e498fa69282c454b644b36a846d2.png"
             alt=""
             className="absolute w-[110px] md:w-[140px] lg:w-[170px] top-[16%] left-[14%]"
             style={{ transform: 'rotate(-11deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/12.png"
+            src="./images/stickers/12.png"
             alt=""
             className="absolute w-[160px] md:w-[190px] lg:w-[220px] top-[12%] right-[3%]"
             style={{ transform: 'rotate(6deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/8ab024460deee5eb53ba0521eec2676f.jpg"
+            src="./images/stickers/8ab024460deee5eb53ba0521eec2676f.jpg"
             alt=""
             className="absolute w-[120px] md:w-[140px] lg:w-[170px] top-[42%] right-[14%]"
             style={{ transform: 'rotate(-5deg)', filter: 'grayscale(0.4) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/3333.png"
+            src="./images/stickers/3333.png"
             alt=""
             className="absolute w-[100px] md:w-[120px] lg:w-[150px] top-[60%] left-[8%]"
             style={{ transform: 'rotate(10deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/hungry-eyes.png"
+            src="./images/stickers/hungry-eyes.png"
             alt=""
             className="absolute w-[120px] md:w-[150px] lg:w-[180px] top-[58%] right-[6%]"
             style={{ transform: 'rotate(-6deg)', filter: 'grayscale(0.4) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/rock-the-musik.png"
+            src="./images/stickers/rock-the-musik.png"
             alt=""
             className="absolute w-[110px] md:w-[140px] lg:w-[170px] top-[72%] left-[22%]"
             style={{ transform: 'rotate(8deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/fb410e848e70634ad0b8954d45be0515.png"
+            src="./images/stickers/fb410e848e70634ad0b8954d45be0515.png"
             alt=""
             className="absolute w-[140px] md:w-[170px] lg:w-[200px] bottom-[10%] right-[14%]"
             style={{ transform: 'rotate(-3deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/087d9fe684005c980e08f2e228b37058.png"
+            src="./images/stickers/087d9fe684005c980e08f2e228b37058.png"
             alt=""
             className="absolute w-[120px] md:w-[150px] lg:w-[180px] top-[18%] right-[8%]"
             style={{ transform: 'rotate(11deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
           />
           <img
-            src="/images/stickers/0ec6a0373b1462cec4fef67a9a199501.png"
+            src="./images/stickers/0ec6a0373b1462cec4fef67a9a199501.png"
             alt=""
             className="absolute w-[100px] md:w-[130px] lg:w-[160px] bottom-[30%] left-[14%]"
             style={{ transform: 'rotate(-7deg)', filter: 'grayscale(0.5) contrast(1.15) drop-shadow(3px 3px 0 rgba(10,10,10,0.85))' }}
@@ -258,7 +258,7 @@ const Home = () => {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[5]">
           <img
             ref={heroImgRef}
-            src="/images/hero-center.png"
+            src="./images/hero-center.png"
             alt="ZY STUDIO"
             className="w-auto h-[88vh] max-h-[860px] object-contain"
             style={{
@@ -313,8 +313,8 @@ const Home = () => {
         <div className="brut-ink-splash brut-ink-splash--blood" style={{ top: '20%', left: '2%', width: '120px', height: '120px', opacity: '0.6' }} />
 
         {/* 贴纸装饰 */}
-        <img src="/images/stickers/56d74eb813cc9a3e6871101a3ae63349.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '12%', left: '8%', '--rot': '-10deg' }} />
-        <img src="/images/stickers/260370f5ff2facbaf832744f88c98d28.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '14%', right: '5%', '--rot': '7deg', animationDelay: '1.4s' }} />
+        <img src="./images/stickers/56d74eb813cc9a3e6871101a3ae63349.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '12%', left: '8%', '--rot': '-10deg' }} />
+        <img src="./images/stickers/260370f5ff2facbaf832744f88c98d28.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '14%', right: '5%', '--rot': '7deg', animationDelay: '1.4s' }} />
 
         <div className="max-w-content mx-auto px-5 md:px-6">
           {/* 顶部刊头 · 粗野字体风格 */}
@@ -368,8 +368,8 @@ const Home = () => {
         <div className="brut-ink-splash brut-ink-splash--ink" style={{ bottom: '12%', left: '4%', width: '160px', height: '160px', opacity: '0.45' }} />
 
         {/* 贴纸装饰 */}
-        <img src="/images/stickers/316d76bee77e802de85c892a519e0754.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '10%', left: '4%', '--rot': '8deg' }} />
-        <img src="/images/stickers/29d8f90bca9c0debee977814ac2b5d17.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ bottom: '10%', right: '4%', '--rot': '-5deg', animationDelay: '1.0s' }} />
+        <img src="./images/stickers/316d76bee77e802de85c892a519e0754.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '10%', left: '4%', '--rot': '8deg' }} />
+        <img src="./images/stickers/29d8f90bca9c0debee977814ac2b5d17.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ bottom: '10%', right: '4%', '--rot': '-5deg', animationDelay: '1.0s' }} />
 
         <div className="max-w-content mx-auto px-5 md:px-6">
           <div className="flex items-center gap-6 mb-12 md:mb-16">
@@ -493,9 +493,9 @@ const Home = () => {
         <div className="brut-ink-splash brut-ink-splash--blood" style={{ top: '15%', right: '8%', width: '160px', height: '160px', opacity: '0.5' }} />
 
         {/* 贴纸装饰 */}
-        <img src="/images/stickers/75023c48e584600d0e0d10b871c9b56f.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '8%', right: '4%', '--rot': '6deg' }} />
-        <img src="/images/stickers/4c433b6b1a0c7c9c3df9127358140cc1.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ bottom: '12%', right: '4%', '--rot': '-8deg', animationDelay: '1.2s' }} />
-        <img src="/images/stickers/41ab5b2a351bbf1c27ce30cb3e511a70.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '38%', left: '8%', '--rot': '9deg', animationDelay: '0.6s' }} />
+        <img src="./images/stickers/75023c48e584600d0e0d10b871c9b56f.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '8%', right: '4%', '--rot': '6deg' }} />
+        <img src="./images/stickers/4c433b6b1a0c7c9c3df9127358140cc1.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ bottom: '12%', right: '4%', '--rot': '-8deg', animationDelay: '1.2s' }} />
+        <img src="./images/stickers/41ab5b2a351bbf1c27ce30cb3e511a70.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '38%', left: '8%', '--rot': '9deg', animationDelay: '0.6s' }} />
 
         <div className="max-w-content mx-auto px-5 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end mb-12 md:mb-16">
@@ -657,9 +657,9 @@ const Home = () => {
         <div className="brut-ink-splash brut-ink-splash--blood" style={{ bottom: '8%', left: '4%', width: '140px', height: '140px', opacity: '0.55' }} />
 
         {/* 贴纸装饰 */}
-        <img src="/images/stickers/f011df2900337937b03bb44cd15eb546.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '35%', left: '9%', '--rot': '-6deg' }} />
-        <img src="/images/stickers/70a38ec76541776780281e4aac56135e.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '10%', right: '5%', '--rot': '-9deg', animationDelay: '1.6s' }} />
-        <img src="/images/stickers/b19a210b746270d85c639f6eff0cf353.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '16%', right: '12%', '--rot': '12deg', animationDelay: '0.4s' }} />
+        <img src="./images/stickers/f011df2900337937b03bb44cd15eb546.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '35%', left: '9%', '--rot': '-6deg' }} />
+        <img src="./images/stickers/70a38ec76541776780281e4aac56135e.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '10%', right: '5%', '--rot': '-9deg', animationDelay: '1.6s' }} />
+        <img src="./images/stickers/b19a210b746270d85c639f6eff0cf353.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '16%', right: '12%', '--rot': '12deg', animationDelay: '0.4s' }} />
 
         <div className="max-w-content mx-auto px-5 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end mb-12 md:mb-16">

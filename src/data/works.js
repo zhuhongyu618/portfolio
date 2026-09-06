@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    作品集数据 — 3 个作品严格按用户要求
    统一字段：pageImages（主要页面）·  originalImages（原稿）
    ========================================================= */
@@ -18,26 +18,26 @@ export const works = [
     year: '2025',
     period: '2025.06 — 2025.12',
     role: '主视觉 / UI & UX 设计师',
-    cover: '/images/works/original-ip/Frame-0.jpg',
+    cover: './images/works/original-ip/Frame-0.jpg',
 
     // 主要页面：Frame-0 ~ Frame-18（全部按顺序排列，高度统一）
     pageImages: Array.from({ length: 19 }, (_, i) =>
-      `/images/works/original-ip/Frame-${i}.jpg`
+      `./images/works/original-ip/Frame-${i}.jpg`
     ),
 
     // 原稿：原稿1~原稿6（点击可跳转查看原稿，附中文交互提示）
     originalImages: [
-      { src: encodeURI('/images/works/original-ip/原稿1.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
-      { src: encodeURI('/images/works/original-ip/原稿2.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
-      { src: encodeURI('/images/works/original-ip/原稿3.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
-      { src: encodeURI('/images/works/original-ip/原稿4.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
-      { src: encodeURI('/images/works/original-ip/原稿5.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
-      { src: encodeURI('/images/works/original-ip/原稿6.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: encodeURI('./images/works/original-ip/原稿1.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: encodeURI('./images/works/original-ip/原稿2.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: encodeURI('./images/works/original-ip/原稿3.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: encodeURI('./images/works/original-ip/原稿4.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: encodeURI('./images/works/original-ip/原稿5.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: encodeURI('./images/works/original-ip/原稿6.jpg'), label: '原稿', tip: '点击查看主要界面原稿' },
     ],
 
     // 兼容 WorkCard 等组件
     images: Array.from({ length: 20 }, (_, i) =>
-      `/images/works/original-ip/Frame-${i}.jpg`
+      `./images/works/original-ip/Frame-${i}.jpg`
     ),
 
     tags: ['原创 IP', '视觉设计', '交互设计', '角色形象'],
@@ -68,18 +68,18 @@ export const works = [
     year: '2026',
     period: '2026.06 — 2026.08',
     role: '独立品牌 & 网页 UI/UX 主设计师',
-    cover: '/images/works/art-studio/Frame-0.jpg',
+    cover: './images/works/art-studio/Frame-0.jpg',
 
     // 主要页面：Frame-0 ~ Frame-14（全部按顺序排列，高度统一）
     pageImages: Array.from({ length: 15 }, (_, i) =>
-      `/images/works/art-studio/Frame-${i}.jpg`
+      `./images/works/art-studio/Frame-${i}.jpg`
     ),
 
     // 原稿：Frame-15 ~ Frame-22（共 8 张，可点击跳转查看原稿，附中文交互提示）
     originalImages: Array.from({ length: 8 }, (_, i) => {
       const idx = i + 15
       return {
-        src: `/images/works/art-studio/Frame-${idx}.jpg`,
+        src: `./images/works/art-studio/Frame-${idx}.jpg`,
         label: `原稿`,
         tip: `点击查看主要界面原稿`,
       }
@@ -87,7 +87,7 @@ export const works = [
 
     // 兼容 WorkCard 等组件
     images: Array.from({ length: 23 }, (_, i) =>
-      `/images/works/art-studio/Frame-${i}.jpg`
+      `./images/works/art-studio/Frame-${i}.jpg`
     ),
 
     tags: ['品牌官网', '艺术工作室', '响应式网页', '移动端适配'],
@@ -118,21 +118,21 @@ export const works = [
     year: '2026',
     period: '2026.03 — 2026.04',
     role: '产品官网 UI&UX 主设计师',
-    cover: '/images/works/mivox/Frame-0.jpg',
+    cover: './images/works/mivox/Frame-0.jpg',
 
     // 主要页面：Frame-0 ~ Frame-10（全部按顺序排列，高度统一）
     pageImages: Array.from({ length: 11 }, (_, i) =>
-      `/images/works/mivox/Frame-${i}.jpg`
+      `./images/works/mivox/Frame-${i}.jpg`
     ),
 
     // 原稿：Frame-11（可点击跳转查看原稿，附中文交互提示）
     originalImages: [
-      { src: '/images/works/mivox/Frame-11.jpg', label: '原稿', tip: '点击查看主要界面原稿' },
+      { src: './images/works/mivox/Frame-11.jpg', label: '原稿', tip: '点击查看主要界面原稿' },
     ],
 
     // 兼容 WorkCard 等组件
     images: Array.from({ length: 12 }, (_, i) =>
-      `/images/works/mivox/Frame-${i}.jpg`
+      `./images/works/mivox/Frame-${i}.jpg`
     ),
 
     tags: ['AI 产品', '官网落地页', '产品叙事', '响应式'],

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+﻿import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 /* ==========================================================================
@@ -92,19 +92,19 @@ const Skills = () => {
               <div className="pop-quad-grid">
                 {/* 4 张相同图的不同滤镜（AI Creative 代表） */}
                 <div>
-                  <img src="/images/works/ai-creative/ai-creative-2.jpg" alt="AI Creative · Variant 01" loading="lazy" />
+                  <img src="./images/works/ai-creative/ai-creative-2.jpg" alt="AI Creative · Variant 01" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial">01_01</div>
                 </div>
                 <div>
-                  <img src="/images/works/ai-creative/ai-creative-3.jpg" alt="AI Creative · Variant 02" loading="lazy" />
+                  <img src="./images/works/ai-creative/ai-creative-3.jpg" alt="AI Creative · Variant 02" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial" style={{ borderColor: 'rgba(0,224,255,0.5)' }}>01_02</div>
                 </div>
                 <div>
-                  <img src="/images/works/ai-creative/ai-creative-6.jpg" alt="AI Creative · Variant 03" loading="lazy" />
+                  <img src="./images/works/ai-creative/ai-creative-6.jpg" alt="AI Creative · Variant 03" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial" style={{ borderColor: 'rgba(255,51,153,0.5)' }}>01_03</div>
                 </div>
                 <div>
-                  <img src="/images/works/ai-creative/ai-creative-7.jpg" alt="AI Creative · Variant 04" loading="lazy" />
+                  <img src="./images/works/ai-creative/ai-creative-7.jpg" alt="AI Creative · Variant 04" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial" style={{ borderColor: 'rgba(233,196,106,0.5)' }}>01_04</div>
                 </div>
               </div>
@@ -142,19 +142,19 @@ const Skills = () => {
             >
               <div className="pop-quad-grid" style={{ aspectRatio: '3 / 4' }}>
                 <div>
-                  <img src="/images/works/web1.jpg" alt="UI UX · 01" loading="lazy" />
+                  <img src="./images/works/web1.jpg" alt="UI UX · 01" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial">02_01</div>
                 </div>
                 <div>
-                  <img src="/images/works/web2.jpg" alt="UI UX · 02" loading="lazy" />
+                  <img src="./images/works/web2.jpg" alt="UI UX · 02" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial">02_02</div>
                 </div>
                 <div>
-                  <img src="/images/works/web3.jpg" alt="UI UX · 03" loading="lazy" />
+                  <img src="./images/works/web3.jpg" alt="UI UX · 03" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial">02_03</div>
                 </div>
                 <div>
-                  <img src="/images/works/mobile1.jpg" alt="UI UX · 04" loading="lazy" />
+                  <img src="./images/works/mobile1.jpg" alt="UI UX · 04" loading="lazy" />
                   <div className="absolute top-3 left-3 z-2 work-serial">02_04</div>
                 </div>
               </div>

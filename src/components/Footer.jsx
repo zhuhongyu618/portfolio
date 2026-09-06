@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion'
+﻿import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 /* ==========================================================================
@@ -41,9 +41,9 @@ const Footer = () => {
       <div className="brut-ink-splash brut-ink-splash--marigold" style={{ bottom: '14%', right: '8%', width: '140px', height: '140px', opacity: '0.45' }} />
 
       {/* 贴纸拼贴层 · 粗野字体风格 */}
-      <img src="/images/stickers/0803fd8150919b64bc8df85d15327f5a.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '12%', right: '4%', '--rot': '6deg' }} />
-      <img src="/images/stickers/2f80f7970f75426f069589fda24fd549.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '40%', left: '3%', '--rot': '-12deg', animationDelay: '0.9s' }} />
-      <img src="/images/stickers/f134fc1300dd366950f6935b74f34655.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--lg" style={{ bottom: '12%', right: '6%', '--rot': '10deg', animationDelay: '1.7s' }} />
+      <img src="./images/stickers/0803fd8150919b64bc8df85d15327f5a.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '12%', right: '4%', '--rot': '6deg' }} />
+      <img src="./images/stickers/2f80f7970f75426f069589fda24fd549.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '40%', left: '3%', '--rot': '-12deg', animationDelay: '0.9s' }} />
+      <img src="./images/stickers/f134fc1300dd366950f6935b74f34655.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--lg" style={{ bottom: '12%', right: '6%', '--rot': '10deg', animationDelay: '1.7s' }} />
 
       {/* ============ 巨字版权签名 · ZHONGYU 单行 ============ */}
       <div className="max-w-content mx-auto px-5 md:px-6 pt-20 md:pt-24 pb-8 md:pb-12 relative min-h-[240px]">

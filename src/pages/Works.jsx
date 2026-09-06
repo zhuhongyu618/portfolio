@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+﻿import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { works, categories } from '../data/works'
 import { motion, useInView } from 'framer-motion'
@@ -37,11 +37,11 @@ const Works = () => {
       <div className="brut-ink-splash brut-ink-splash--marigold" style={{ bottom: '8%', left: '6%', width: '140px', height: '140px', opacity: '0.45' }} />
 
       {/* 贴纸拼贴层 · 粗野字体风格 */}
-      <img src="/images/stickers/4f3d4cd6372eea4f03970ef408d1498f.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '10%', right: '4%', '--rot': '6deg' }} />
-      <img src="/images/stickers/8a3f78881230cbd96bb1ebb4913dbf96.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '6%', right: '9%', '--rot': '-10deg', animationDelay: '0.8s' }} />
-      <img src="/images/stickers/bad5780b2f5b6084cd206fb2a6fbf570.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--lg" style={{ top: '38%', right: '3%', '--rot': '-13deg', animationDelay: '1.3s' }} />
-      <img src="/images/stickers/c251cc42c69970b9e0198a76284d9ffa.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '36%', left: '8%', '--rot': '10deg', animationDelay: '0.5s' }} />
-      <img src="/images/stickers/c57a26d5b3780bd4f9139d4c6782ea79.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '22%', right: '12%', '--rot': '8deg', animationDelay: '1.7s' }} />
+      <img src="./images/stickers/4f3d4cd6372eea4f03970ef408d1498f.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '10%', right: '4%', '--rot': '6deg' }} />
+      <img src="./images/stickers/8a3f78881230cbd96bb1ebb4913dbf96.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '6%', right: '9%', '--rot': '-10deg', animationDelay: '0.8s' }} />
+      <img src="./images/stickers/bad5780b2f5b6084cd206fb2a6fbf570.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--lg" style={{ top: '38%', right: '3%', '--rot': '-13deg', animationDelay: '1.3s' }} />
+      <img src="./images/stickers/c251cc42c69970b9e0198a76284d9ffa.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '36%', left: '8%', '--rot': '10deg', animationDelay: '0.5s' }} />
+      <img src="./images/stickers/c57a26d5b3780bd4f9139d4c6782ea79.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ bottom: '22%', right: '12%', '--rot': '8deg', animationDelay: '1.7s' }} />
 
       {/* ============ #works-brut-header · 刊头 ============ */}
       <section id="works-brut-header" className="max-w-content mx-auto px-5 md:px-6 relative z-10">

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 /* ==========================================================================
@@ -134,11 +134,11 @@ const About = () => {
       <div className="brut-ink-splash brut-ink-splash--marigold" style={{ bottom: '12%', right: '6%', width: '160px', height: '160px', opacity: '0.4' }} />
 
       {/* 贴纸拼贴层 · 粗野字体风格 */}
-      <img src="/images/stickers/b8fc430775979486ad642ef1bac00b13.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '10%', right: '3%', '--rot': '5deg' }} />
-      <img src="/images/stickers/e2035fd82e0824520d3e6194285cf3ca.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '42%', left: '8%', '--rot': '-8deg', animationDelay: '1.1s' }} />
-      <img src="/images/stickers/e760eb1004e665c15f6b5e47b908534a.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--lg" style={{ bottom: '8%', right: '5%', '--rot': '9deg', animationDelay: '1.8s' }} />
-      <img src="/images/stickers/ca904055ff770b25d7654e2ad06759e9.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '30%', right: '10%', '--rot': '-6deg', animationDelay: '0.7s' }} />
-      <img src="/images/stickers/f77373a3c35e581ccc40eb53393eea76.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '18%', left: '8%', '--rot': '6deg', animationDelay: '0.3s' }} />
+      <img src="./images/stickers/b8fc430775979486ad642ef1bac00b13.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '10%', right: '3%', '--rot': '5deg' }} />
+      <img src="./images/stickers/e2035fd82e0824520d3e6194285cf3ca.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '42%', left: '8%', '--rot': '-8deg', animationDelay: '1.1s' }} />
+      <img src="./images/stickers/e760eb1004e665c15f6b5e47b908534a.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--lg" style={{ bottom: '8%', right: '5%', '--rot': '9deg', animationDelay: '1.8s' }} />
+      <img src="./images/stickers/ca904055ff770b25d7654e2ad06759e9.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '30%', right: '10%', '--rot': '-6deg', animationDelay: '0.7s' }} />
+      <img src="./images/stickers/f77373a3c35e581ccc40eb53393eea76.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--sm" style={{ top: '18%', left: '8%', '--rot': '6deg', animationDelay: '0.3s' }} />
 
       {/* ============ #about-brut-hero · 刊头 ============ */}
       <section id="about-brut-hero" className="max-w-content mx-auto px-5 md:px-6 relative z-10">
@@ -389,7 +389,7 @@ const About = () => {
           STRENGTHS.
         </span>
         <div className="brut-ink-splash brut-ink-splash--ink" style={{ bottom: '10%', right: '4%', width: '180px', height: '180px', opacity: '0.45' }} />
-        <img src="/images/stickers/e7e850c14eed0978c1d9b389604acc03.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '22%', right: '5%', '--rot': '11deg', animationDelay: '1.5s' }} />
+        <img src="./images/stickers/e7e850c14eed0978c1d9b389604acc03.png" alt="" aria-hidden className="pop-sticker-img pop-sticker-img--md" style={{ top: '22%', right: '5%', '--rot': '11deg', animationDelay: '1.5s' }} />
         <span className="brut-scrawl brut-scrawl--marigold absolute bottom-[6%] left-[4%] text-[clamp(36px,4vw,56px)] uppercase" aria-hidden>
           EDGE.
         </span>
