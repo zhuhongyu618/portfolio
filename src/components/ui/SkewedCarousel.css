@@ -1,0 +1,291 @@
+/* ==========================================================================
+   SkewedCarousel · 倾斜卡片滚动 marquee
+   雾感贴物风格：透明玻璃 + 哑光噪点(8-12%) + 1px 软边 + 扫描线
+   ========================================================================== */
+.skewed-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 32px 0;
+}
+
+.skewed-carousel__viewport {
+  position: relative;
+  overflow: visible;
+}
+
+.skewed-carousel__track {
+  display: flex;
+  gap: var(--sc-gap);
+  will-change: transform;
+  padding-right: var(--sc-gap);
+}
+
+/* 边缘淡出 */
+.skewed-carousel__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  z-index: 5;
+  pointer-events: none;
+}
+.skewed-carousel__fade--left {
+  left: 0;
+  background: linear-gradient(to right,
+    #141414 0%,
+    rgba(20, 20, 20, 0.95) 35%,
+    rgba(20, 20, 20, 0) 100%);
+}
+.skewed-carousel__fade--right {
+  right: 0;
+  background: linear-gradient(to left,
+    #141414 0%,
+    rgba(20, 20, 20, 0.95) 35%,
+    rgba(20, 20, 20, 0) 100%);
+}
+
+/* 卡片 */
+.skewed-carousel__card {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--sc-card-w);
+  height: var(--sc-card-h);
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(30, 30, 30, 0.45);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(232, 232, 232, 0.12);
+  /* 1px 软边模拟哑光印刷 */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(232, 232, 232, 0.08);
+  overflow: hidden;
+  will-change: transform, opacity;
+  cursor: pointer;
+  transform-origin: center center;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.skewed-carousel__card:hover {
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(232, 232, 232, 0.12);
+  border-color: rgba(232, 232, 232, 0.22);
+}
+
+/* 点击置前：放大 + 不透明 + 轻微上浮 */
+.skewed-carousel__card--active {
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(232, 232, 232, 0.16);
+}
+
+/* 哑光噪点纹理 8-12% */
+.skewed-carousel__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* 扫描线 */
+.skewed-carousel__scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(232, 232, 232, 0.02) 0px,
+    rgba(232, 232, 232, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* 顶部辉光 */
+.skewed-carousel__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    var(--glow-color, rgba(232, 232, 232, 0.25)),
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+}
+.skewed-carousel__card:hover .skewed-carousel__glow,
+.skewed-carousel__card--active .skewed-carousel__glow {
+  opacity: 1;
+}
+
+.skewed-carousel__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skewed-carousel__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skewed-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-color, #D14D78);
+  box-shadow: 0 0 8px var(--accent-color, #D14D78);
+}
+
+.skewed-carousel__label-text {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #E8E8E8;
+}
+
+.skewed-carousel__title {
+  font-family: 'Cabinet Grotesk', 'Archivo Black', 'PingFang SC', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #F5F5F5;
+  margin: 0;
+}
+
+.skewed-carousel__body {
+  flex: 1;
+  font-family: 'PingFang SC', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #C8C8C8;
+}
+
+.skewed-carousel__body p {
+  margin: 0 0 8px;
+}
+.skewed-carousel__body ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.skewed-carousel__body ul li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 10px;
+}
+.skewed-carousel__body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-color, #D14D78);
+}
+
+/* 统计 */
+.skewed-carousel__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.skewed-carousel__stat-value {
+  font-family: 'Cabinet Grotesk', 'Archivo Black', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1;
+  color: #F5F5F5;
+}
+.skewed-carousel__stat-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 14px;
+  color: #9A9A9A;
+  letter-spacing: 0.02em;
+}
+
+/* 右下角序号 */
+.skewed-carousel__index {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(232, 232, 232, 0.35);
+  letter-spacing: 0.1em;
+}
+
+/* ========== 颜色变体（雾感贴物统一灰阶 + 单一主色） ========== */
+.skewed-carousel__card--berry {
+  --accent-color: #D14D78;
+  --glow-color: rgba(209, 77, 120, 0.32);
+  border-color: rgba(209, 77, 120, 0.28);
+  background: linear-gradient(145deg, rgba(209, 77, 120, 0.14), rgba(30, 30, 30, 0.45));
+}
+
+.skewed-carousel__card--cobalt {
+  --accent-color: #3D6BD9;
+  --glow-color: rgba(61, 107, 217, 0.32);
+  border-color: rgba(61, 107, 217, 0.28);
+  background: linear-gradient(145deg, rgba(61, 107, 217, 0.14), rgba(30, 30, 30, 0.45));
+}
+
+.skewed-carousel__card--cyan {
+  --accent-color: #00E0FF;
+  --glow-color: rgba(0, 224, 255, 0.32);
+  border-color: rgba(0, 224, 255, 0.26);
+  background: linear-gradient(145deg, rgba(0, 224, 255, 0.12), rgba(30, 30, 30, 0.45));
+}
+
+.skewed-carousel__card--magenta {
+  --accent-color: #FF3399;
+  --glow-color: rgba(255, 51, 153, 0.32);
+  border-color: rgba(255, 51, 153, 0.28);
+  background: linear-gradient(145deg, rgba(255, 51, 153, 0.14), rgba(30, 30, 30, 0.45));
+}
+
+.skewed-carousel__card--yellow {
+  --accent-color: #E9C46A;
+  --glow-color: rgba(233, 196, 106, 0.32);
+  border-color: rgba(233, 196, 106, 0.26);
+  background: linear-gradient(145deg, rgba(233, 196, 106, 0.12), rgba(30, 30, 30, 0.45));
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .skewed-carousel {
+    padding: 20px 0;
+  }
+  .skewed-carousel__fade {
+    width: 70px;
+  }
+  .skewed-carousel__card {
+    padding: 20px;
+  }
+  .skewed-carousel__title {
+    font-size: 28px;
+  }
+  .skewed-carousel__body {
+    font-size: 14px;
+  }
+  .skewed-carousel__stat-value {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,143 @@
+/* ============================================================
+   FlowingMenu · 波普主题样式
+   - 静态行：奶油文字 + 公司名大字 + 角色·周期 + 标签
+   - 跑马灯覆盖：主题色背景 + void 反白文字 + 圆角图片药丸
+   - 尺寸遵循 8px 网格
+   ============================================================ */
+
+.menu-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.menu__item {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid;
+}
+
+.menu__item:first-child {
+  border-top: none;
+}
+
+.menu__item-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 16px 24px;
+  z-index: 2;
+}
+
+.menu__item-title {
+  font-family: '"Cabinet Grotesk"', '"PingFang SC"', '"Noto Sans SC"', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.menu__item-sub {
+  font-family: '"Cabinet Grotesk"', '"PingFang SC"', sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 1.2vw, 16px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.menu__item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.menu__item-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid rgba(232, 232, 232, 0.35);
+  font-family: '"Cabinet Grotesk"', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(232, 232, 232, 0.8);
+}
+
+.menu__item-link:hover {
+  color: inherit;
+}
+
+/* 跑马灯覆盖层 */
+.marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translate3d(0, 101%, 0);
+}
+
+.marquee__inner-wrap {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee__inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: fit-content;
+  will-change: transform;
+}
+
+.marquee__part {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee span {
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: '"Cabinet Grotesk"', '"PingFang SC"', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5vw, 72px);
+  line-height: 1;
+  padding: 0 16px;
+}
+
+.marquee__img {
+  width: 168px;
+  height: 56px;
+  margin: 0 24px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border: 2px solid rgba(12, 12, 12, 0.25);
+}

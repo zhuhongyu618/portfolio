@@ -1,0 +1,167 @@
+.bending-marquee {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  padding: 16px 0;
+}
+
+.bending-marquee__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bending-marquee__fade--left {
+  left: 0;
+  background: linear-gradient(to right, #141414 0%, rgba(20, 20, 20, 0.95) 40%, rgba(20, 20, 20, 0) 100%);
+}
+
+.bending-marquee__fade--right {
+  right: 0;
+  background: linear-gradient(to left, #141414 0%, rgba(20, 20, 20, 0.95) 40%, rgba(20, 20, 20, 0) 100%);
+}
+
+.bending-marquee__track-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.bending-marquee__track {
+  display: flex;
+  gap: var(--marquee-gap);
+  will-change: transform;
+  padding-right: var(--marquee-gap);
+}
+
+.bending-marquee__pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--marquee-pill-width);
+  height: var(--marquee-pill-height);
+  padding: 0 20px;
+  border-radius: 40px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 232, 232, 0.25);
+  background: rgba(232, 232, 232, 0.06);
+  color: #E8E8E8;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bending-marquee__pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.bending-marquee__pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.bending-marquee__pill--cyan {
+  border-color: rgba(0, 224, 255, 0.5);
+  background: rgba(0, 224, 255, 0.08);
+  color: #00E0FF;
+}
+.bending-marquee__pill--cyan:hover {
+  border-color: rgba(0, 224, 255, 0.8);
+  background: rgba(0, 224, 255, 0.15);
+}
+
+.bending-marquee__pill--magenta {
+  border-color: rgba(255, 51, 153, 0.5);
+  background: rgba(255, 51, 153, 0.08);
+  color: #FF3399;
+}
+.bending-marquee__pill--magenta:hover {
+  border-color: rgba(255, 51, 153, 0.8);
+  background: rgba(255, 51, 153, 0.15);
+}
+
+.bending-marquee__pill--berry {
+  border-color: rgba(209, 77, 120, 0.5);
+  background: rgba(209, 77, 120, 0.08);
+  color: #D14D78;
+}
+.bending-marquee__pill--berry:hover {
+  border-color: rgba(209, 77, 120, 0.8);
+  background: rgba(209, 77, 120, 0.15);
+}
+
+.bending-marquee__pill--cobalt {
+  border-color: rgba(61, 107, 217, 0.5);
+  background: rgba(61, 107, 217, 0.08);
+  color: #3D6BD9;
+}
+.bending-marquee__pill--cobalt:hover {
+  border-color: rgba(61, 107, 217, 0.8);
+  background: rgba(61, 107, 217, 0.15);
+}
+
+.bending-marquee__pill--yellow {
+  border-color: rgba(233, 196, 106, 0.5);
+  background: rgba(233, 196, 106, 0.08);
+  color: #E9C46A;
+}
+.bending-marquee__pill--yellow:hover {
+  border-color: rgba(233, 196, 106, 0.8);
+  background: rgba(233, 196, 106, 0.15);
+}
+
+.bending-marquee__pill--sage {
+  border-color: rgba(106, 158, 133, 0.5);
+  background: rgba(106, 158, 133, 0.08);
+  color: #6A9E85;
+}
+.bending-marquee__pill--sage:hover {
+  border-color: rgba(106, 158, 133, 0.8);
+  background: rgba(106, 158, 133, 0.15);
+}
+
+.bending-marquee__pill--taro {
+  border-color: rgba(147, 120, 201, 0.5);
+  background: rgba(147, 120, 201, 0.08);
+  color: #9378C9;
+}
+.bending-marquee__pill--taro:hover {
+  border-color: rgba(147, 120, 201, 0.8);
+  background: rgba(147, 120, 201, 0.15);
+}
+
+@media (max-width: 768px) {
+  .bending-marquee {
+    padding: 12px 0;
+  }
+  .bending-marquee__pill {
+    font-size: 12px;
+    height: 44px;
+    padding: 0 16px;
+  }
+  .bending-marquee__fade {
+    width: 60px;
+  }
+}

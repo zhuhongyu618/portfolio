@@ -1,0 +1,82 @@
+/* ==========================================================================
+   BlurHighlight · 模糊入场 + 关键词高亮扫光
+   ========================================================================== */
+
+.blur-highlight {
+  font-family: '"Cabinet Grotesk"', '"PingFang SC"', '"Noto Sans SC"', sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* 单个词单元：相对定位承载扫光层 */
+.blur-highlight__word {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: baseline;
+  will-change: filter, opacity;
+}
+
+.blur-highlight__space {
+  white-space: pre;
+}
+
+/* 关键词单元：加粗 + 微微抬升，强化波普焦点 */
+.blur-highlight__word--kw {
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+/* 扫光层：色块从左向右横扫过文字 */
+.blur-highlight__sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+/* 关键词文字本身置于扫光层之上，使用撞色描边/阴影增强波普感 */
+.blur-highlight__text {
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    1.5px 0 0 rgba(20, 20, 20, 0.85),
+    -1.5px 0 0 rgba(20, 20, 20, 0.85),
+    0 2px 0 rgba(20, 20, 20, 0.6);
+}
+
+/* 段落整体入场容器可选 padding，呼应 8px 网格 */
+.blur-highlight--lg {
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.55;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .blur-highlight {
+    font-size: clamp(16px, 4vw, 22px);
+    line-height: 1.65;
+    max-width: 100%;
+  }
+  .blur-highlight__word--kw {
+    font-weight: 800;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blur-highlight__word,
+  .blur-highlight__sweep {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

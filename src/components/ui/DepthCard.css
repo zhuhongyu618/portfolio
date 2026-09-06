@@ -1,0 +1,164 @@
+.depth-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  background: #0A0A0A;
+  border: 1px solid rgba(232, 232, 232, 0.1);
+}
+
+.depth-card__noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.depth-card__scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(232, 232, 232, 0.04) 0px,
+    rgba(232, 232, 232, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.depth-card__glow {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.depth-card__layer {
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+}
+
+.depth-card__layer--bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.depth-card__layer--fg {
+  z-index: 3;
+}
+
+.depth-card--berry {
+  border-color: rgba(209, 77, 120, 0.4);
+}
+.depth-card--berry .depth-card__glow {
+  background: rgba(209, 77, 120, 0.4);
+}
+.depth-card--berry .depth-card__layer--bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(209, 77, 120, 0.12) 0%, transparent 70%);
+}
+
+.depth-card--cobalt {
+  border-color: rgba(61, 107, 217, 0.4);
+}
+.depth-card--cobalt .depth-card__glow {
+  background: rgba(61, 107, 217, 0.4);
+}
+.depth-card--cobalt .depth-card__layer--bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(61, 107, 217, 0.12) 0%, transparent 70%);
+}
+
+.depth-card--cyan {
+  border-color: rgba(0, 224, 255, 0.35);
+}
+.depth-card--cyan .depth-card__glow {
+  background: rgba(0, 224, 255, 0.4);
+}
+.depth-card--cyan .depth-card__layer--bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.12) 0%, transparent 70%);
+}
+
+.depth-card--magenta {
+  border-color: rgba(255, 51, 153, 0.35);
+}
+.depth-card--magenta .depth-card__glow {
+  background: rgba(255, 51, 153, 0.4);
+}
+.depth-card--magenta .depth-card__layer--bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(255, 51, 153, 0.12) 0%, transparent 70%);
+}
+
+.depth-card--yellow {
+  border-color: rgba(233, 196, 106, 0.35);
+}
+.depth-card--yellow .depth-card__glow {
+  background: rgba(233, 196, 106, 0.4);
+}
+.depth-card--yellow .depth-card__layer--bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(233, 196, 106, 0.12) 0%, transparent 70%);
+}
+
+/* ========== 透明玻璃质感（glass） · 雾感贴物 ==========
+   覆盖基础实色背景，叠加 backdrop-filter 模糊 + 1px 软边 */
+.depth-card--glass {
+  background: rgba(20, 20, 20, 0.38);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  border-color: rgba(232, 232, 232, 0.16);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(232, 232, 232, 0.1);
+}
+.depth-card--glass .depth-card__noise {
+  opacity: 0.1;
+}
+.depth-card--glass .depth-card__layer--bg {
+  background: linear-gradient(145deg, rgba(232, 232, 232, 0.04), transparent 60%);
+}

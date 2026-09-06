@@ -1,0 +1,1270 @@
+/* =========================================================
+   PORTFOLIO · BRUTALIST TYPE STUDIO · 粗野字体设计风格
+   Palette: #0A0A0A Ink (95%) · #F2EEE5 Paper (95%) · Blood/Marigold <5%
+   纹理：泼墨溅点 / 涂鸦笔触 / 撕纸边缘 / 印章压痕
+   ========================================================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== GLOBAL RESET ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv11", "kern";
+  overflow-x: hidden;
+  background: #0A0A0A;
+}
+
+body {
+  font-family: '"Inter Tight"', '"PingFang SC"', '"HarmonyOS Sans SC"', '"Noto Sans SC"', '"Microsoft YaHei"', system-ui, -apple-system, sans-serif;
+  background-color: #0A0A0A;          /* ink · 油墨黑底 */
+  color: #F2EEE5;                     /* paper · 牛皮纸米白主文字 */
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== Ambient Layers：粗野字体 · 纸张噪点 + 撕纸毛边 + 泼墨溅 ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background-image:
+    /* 纸张纤维噪点 · 粗野字体核心质感 */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E"),
+    /* 印刷网点 · 极弱 */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1.1' fill='rgba(242,238,229,0.04)'/%3E%3Ccircle cx='12' cy='7' r='0.7' fill='rgba(242,238,229,0.03)'/%3E%3Ccircle cx='7' cy='14' r='0.9' fill='rgba(242,238,229,0.05)'/%3E%3Ccircle cx='17' cy='17' r='0.6' fill='rgba(242,238,229,0.025)'/%3E%3C/svg%3E"),
+    /* 扫描线 · 印刷网点 */
+    repeating-linear-gradient(0deg, rgba(242,238,229,0.022) 0px, rgba(242,238,229,0.022) 1px, transparent 1px, transparent 3px);
+  background-size: 200px 200px, 22px 22px, 100% 100%;
+  opacity: 0.55;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  /* 极弱暗红+米色双角光晕 · 不再使用波普色 */
+  background:
+    radial-gradient(ellipse at 14% 0%, rgba(200,40,28,0.06), transparent 55%),
+    radial-gradient(ellipse at 88% 100%, rgba(212,184,150,0.06), transparent 55%);
+  pointer-events: none;
+}
+
+/* ===== Selection — Paper on Ink · 暗红反白 ===== */
+::selection {
+  background: #C8281C;
+  color: #F2EEE5;
+}
+::-moz-selection {
+  background: #C8281C;
+  color: #F2EEE5;
+}
+
+/* ===== Scrollbar — Brutalist Ink on Paper ===== */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+  border-left: 1px solid #1C1C1C;
+}
+::-webkit-scrollbar-thumb {
+  background: #F2EEE5;
+  border-radius: 0;
+  border: 3px solid #0A0A0A;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8281C;   /* 暗红印章 · 撞色点缀 */
+  border-color: #0A0A0A;
+}
+html {
+  scrollbar-color: #F2EEE5 #0A0A0A;
+  scrollbar-width: thin;
+}
+
+/* ===== Scroll Progress Bar (Paper → Blood 末端) ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 100;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress__bar {
+  height: 100%;
+  width: var(--scroll-progress, 0%);
+  background: #F2EEE5;
+  transform-origin: left center;
+  will-change: width;
+}
+.scroll-progress__bar.is-end {
+  background: #C8281C;      /* 暗红 · 印章末端 */
+  animation: progress-pulse 2.2s ease-in-out infinite;
+}
+@keyframes progress-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+/* ===== @layer components · Warhol 展览组件 =====
+   全部用纯 CSS 属性，避免 @apply 自定义 theme token 导致 expandApplyAtRules 误判 ===== */
+@layer components {
+
+  /* Section Padding — 波普展览大留白（更夸张的间距） */
+  .expo-padding {
+    padding-top: 7rem;          /* 112px */
+    padding-bottom: 7rem;
+  }
+  @media (min-width: 768px) {
+    .expo-padding {
+      padding-top: 11rem;       /* md:176px */
+      padding-bottom: 11rem;
+    }
+  }
+
+  /* 中文正文 · 蜜桃奶油橘严格行宽 60–70ch */
+  .peach-prose {
+    font-size: 16px;
+    line-height: 1.72;
+    letter-spacing: 0.02em;
+    color: #E8E8E8;
+    max-width: 66ch;
+  }
+  .peach-prose strong {
+    color: #C8C8C8;
+    font-weight: 700;
+  }
+  .peach-prose p + p {
+    margin-top: 1.25rem;  /* 20px */
+  }
+
+  /* Eyebrow 展览小标题（大写追踪极小字）· 粗野字体风格 */
+  .expo-eyebrow {
+    font-family: 'Archivo Black', 'Cabinet Grotesk', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #8A8A8A;         /* fog · 雾灰 */
+    line-height: 1;
+    -webkit-text-stroke: 0.5px currentColor;
+  }
+
+  /* Expo Meta 编号/CMYK/年份信息（等宽小大写） */
+  .expo-meta {
+    font-family: 'Archivo Black', 'Cabinet Grotesk', sans-serif;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #9A9A9A;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+    -webkit-text-stroke: 0.4px currentColor;
+  }
+
+  /* Pop Marquee 无限跑马灯（波普文字带） */
+  .pop-marquee {
+    display: flex;
+    width: max-content;
+    flex-shrink: 0;
+    gap: 4rem;
+    align-items: center;
+  }
+  .pop-marquee-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+
+  /* 粗野字体压印按钮 · BRUT PRESS · 暗红印章 hover */
+  .pop-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.8rem;
+    font-family: '"Archivo Black"', '"PingFang SC"', '"Microsoft YaHei"', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    border: 2px solid #F2EEE5;
+    background: transparent;
+    color: #F2EEE5;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .pop-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #F2EEE5;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 0;
+  }
+  .pop-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+  .pop-btn:hover {
+    color: #0A0A0A;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 0 rgba(200,40,28,1);   /* brut-press-blood · 暗红 offset */
+  }
+  .pop-btn > * { position: relative; z-index: 1; }
+
+  /* 实心反转版本 · 米白底变暗红印章 */
+  .pop-btn--solid {
+    background: #F2EEE5;
+    color: #0A0A0A;
+  }
+  .pop-btn--solid::before {
+    background: #C8281C;
+  }
+  .pop-btn--solid:hover {
+    color: #F2EEE5;
+  }
+
+  /* 粗野字体圆形图标按钮 · 联系通道 · 直角化 */
+  .pop-channel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+    border: 2px solid #0A0A0A;
+    background: var(--btn-color, #F2EEE5);
+    color: #0A0A0A;
+    font-family: '"Archivo Black"', '"PingFang SC"', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 0;
+    box-shadow: 4px 4px 0 0 rgba(10, 10, 10, 0.7);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .pop-channel-btn__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0;
+    background: #0A0A0A;
+    color: var(--btn-color, #F2EEE5);
+    flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pop-channel-btn__label {
+    position: relative;
+    z-index: 1;
+  }
+  /* 噪点滤镜 · 粗野字体纸质感 */
+  .pop-channel-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .pop-channel-btn:hover {
+    transform: rotate(-3deg) scale(1.06);
+    box-shadow: 6px 6px 0 0 rgba(200,40,28,1);
+  }
+  .pop-channel-btn:hover .pop-channel-btn__icon {
+    transform: rotate(360deg);
+  }
+  @media (max-width: 640px) {
+    .pop-channel-btn {
+      padding: 0.5rem 0.9rem 0.5rem 0.5rem;
+    }
+    .pop-channel-btn__icon {
+      width: 1.9rem;
+      height: 1.9rem;
+    }
+  }
+
+  /* 粗野字体装饰贴纸 · 星星/光点 · 暗红/橙/米色撞色 */
+  .pop-sticker {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    font-family: '"Archivo Black"', sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    user-select: none;
+    filter: drop-shadow(2px 2px 0 rgba(10, 10, 10, 0.85));
+    animation: pop-float 6s ease-in-out infinite;
+  }
+  .pop-sticker--star {
+    font-size: clamp(28px, 3.5vw, 48px);
+  }
+  .pop-sticker--mini {
+    font-size: clamp(20px, 2.4vw, 32px);
+  }
+  /* 粗野字体撞色 · 暗红/橙/米黄 */
+  .pop-sticker--cyan { color: #5A8FB0; }
+  .pop-sticker--magenta { color: #C8281C; }     /* blood · 暗红 */
+  .pop-sticker--yellow { color: #D4B896; }      /* ochre · 米色 */
+  .pop-sticker--hotpink { color: #B23A1E; }     /* rust · 锈红 */
+  .pop-sticker--brightyellow { color: #C9952F; } /* mustard · 芥末黄 */
+  .pop-sticker--cream { color: #F2EEE5; }
+  @keyframes pop-float {
+    0%, 100% { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+    50% { transform: translate(0, -10px) rotate(calc(var(--rot, 0deg) + 4deg)); }
+  }
+  @media (max-width: 768px) {
+    .pop-sticker { display: none; }
+  }
+
+  /* 粗野字体图片贴纸 · 数字感素材融入各层级界面 */
+  .pop-sticker-img {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 0 rgba(10, 10, 10, 0.85)) saturate(0.85) contrast(1.05);
+    animation: pop-float 7s ease-in-out infinite;
+    will-change: transform;
+  }
+  .pop-sticker-img--lg { width: 128px; }
+  .pop-sticker-img--md { width: 96px; }
+  .pop-sticker-img--sm { width: 64px; }
+  @media (max-width: 768px) {
+    .pop-sticker-img { display: none; }
+  }
+
+  /* 波普四象限作品墙（2x2 重复印刷 · 安迪·沃霍尔 Elvis / Monroe 风格） */
+  .pop-quad-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(232,232,232,0.25);
+    background: #191919;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .pop-quad-grid > * {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(232,232,232,0.18);
+    isolation: isolate;
+  }
+  .pop-quad-grid > * img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  }
+  .pop-quad-grid > *:nth-child(1) img { filter: saturate(1.1) hue-rotate(0deg); }
+  .pop-quad-grid > *:nth-child(2) img { filter: saturate(1.2) hue-rotate(-18deg) contrast(1.15); }
+  .pop-quad-grid > *:nth-child(3) img { filter: saturate(1.3) hue-rotate(28deg) sepia(0.1); }
+  .pop-quad-grid > *:nth-child(4) img { filter: saturate(1.1) hue-rotate(-38deg) invert(0.03); }
+  .pop-quad-grid > *::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20,20,20,0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .pop-quad-grid:hover > * img {
+    transform: scale(1.06);
+  }
+
+  /* 作品卡编号角标 00_1 00_2 00_3 · 粗野字体等宽 */
+  .work-serial {
+    font-family: '"JetBrains Mono"', ui-monospace, monospace;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 14px;
+    color: #F2EEE5;
+    background: rgba(10,10,10,0.66);
+    border: 1px solid rgba(242,238,229,0.35);
+    padding: 6px 12px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* 粗野字体巨字金句 Quote */
+  .pop-quote-char {
+    display: inline-block;
+    font-family: '"Archivo Black"', '"PingFang SC"', '"Microsoft YaHei"', sans-serif;
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.055em;
+    color: #F2EEE5;
+  }
+
+  /* 展览编号 Dept. of Year · 粗野字体 */
+  .expo-dept {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: 'Archivo Black', 'Cabinet Grotesk', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0A0A0A;
+    -webkit-text-stroke: 0.5px currentColor;
+  }
+  .expo-dept__year {
+    font-size: clamp(40px, 5vw, 84px);
+    font-weight: 900;
+    line-height: 0.9;
+    color: #F2EEE5;
+    letter-spacing: -0.02em;
+  }
+
+  /* 票券 Ticket · 粗野字体票根（联系合作区） */
+  .pop-ticket {
+    background: #141414;
+    border: 2px solid rgba(242,238,229,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .pop-ticket::before,
+  .pop-ticket::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #0A0A0A;
+    transform: translateY(-50%);
+    border: 2px solid rgba(242,238,229,0.25);
+  }
+  .pop-ticket::before { left: -13px; }
+  .pop-ticket::after  { right: -13px; }
+
+  /* CMYK 色点 · 改为粗野字体暗红/橙/米色三色点 */
+  .cmyk-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cmyk-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 0;       /* 粗野字体直角 */
+    display: inline-block;
+  }
+
+  /* Link Paper Underline · 米白下划线 + 暗红 hover */
+  .cream-link {
+    position: relative;
+    display: inline-block;
+    color: #F2EEE5;
+    text-decoration: none;
+  }
+  .cream-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .cream-link:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  .cream-link:hover { color: #C8281C; }
+
+  /* Scanline Overlay（展厅屏幕扫描带） */
+  .scanline-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .scanline-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      rgba(20,20,20,0) 0,
+      rgba(232,232,232,0.04) 1px,
+      rgba(20,20,20,0) 2px,
+      rgba(20,20,20,0) 4px
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 3;
+  }
+}
+
+/* ===== Custom Cursor Halo · Brutalist Difference Mode ===== */
+.cursor-halo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(242,238,229,0.14) 0%, rgba(200,40,28,0.08) 40%, transparent 70%);
+  mix-blend-mode: difference;
+  transition: opacity 0.6s ease;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cursor-halo.is-active { opacity: 1; }
+}
+
+/* ===== Ripple Effect · Paper Drop · 粗野字体水波 ===== */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 0;        /* 粗野字体直角水波 */
+  background: rgba(242,238,229, 0.22);
+  transform: scale(0);
+  animation: ripple-anim 0.7s ease-out;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes ripple-anim {
+  to { transform: scale(2.8); opacity: 0; }
+}
+
+/* ===== Text Clamp ===== */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== Page Enter · Mask Reveal ===== */
+@keyframes page-enter-mask {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(5px);
+    clip-path: inset(4% 6% 90% 6% round 2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    clip-path: inset(0% 0% 0% 0% round 0);
+  }
+}
+main {
+  animation: page-enter-mask 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ===== Image Drag Prevention ===== */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+input, textarea, button { font-family: inherit; }
+button { cursor: pointer; }
+
+/* ===== Scroll Reveal Base ===== */
+.sr-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.9s ease;
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
+}
+.sr-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
+}
+
+/* ===== Lenis html/body adjustment ===== */
+html.lenis,
+html.lenis body {
+  height: auto;
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ===== Typography Stability ===== */
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .sr-hidden { opacity: 1; transform: none; filter: none; }
+  .cursor-halo { display: none !important; }
+  main { animation: none; }
+  body::before { background-image: none; }
+}
+
+/* ===== Pop Prose · 波普展览式正文排版 ===== */
+.cn-prose-pop {
+  font-family: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+.cn-prose-pop p {
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+.cn-prose-pop p + p {
+  margin-top: 1.1em;
+}
+.cn-prose-pop strong {
+  font-weight: 800;
+  color: var(--tw-content);
+}
+.cn-prose-pop em {
+  font-style: italic;
+}
+@media (min-width: 768px) {
+  .cn-prose-pop p {
+    font-size: 18px;
+    line-height: 1.9;
+  }
+}
+
+/* ===== 波普闪烁动画（红点头标） ===== */
+@keyframes pop-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  45% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(0.85); }
+  55% { opacity: 1; transform: scale(1); }
+  80% { opacity: 0.5; transform: scale(0.92); }
+}
+.animate-pop-blink {
+  animation: pop-blink 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ===== Preloader loading flow animation ===== */
+@keyframes loading-flow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* =========================================================
+   DESIGN SYSTEM · AI STANDARDIZED TOKENS
+   8px base grid · 1200px content · 12-col responsive
+   ========================================================= */
+
+:root {
+  /* Spacing tokens (8px base grid) */
+  --space-1: 8px;    /* 小间距 · 元素间距 */
+  --space-2: 16px;   /* 小间距 · 文本/元素间距 */
+  --space-3: 24px;   /* 常规间距 · 卡片组分隔 */
+  --space-4: 32px;   /* 常规间距 · 内容分隔 */
+  --space-5: 48px;   /* 中间距 · 卡片组分隔 */
+  --space-6: 64px;   /* 大间距 · 模块分隔 */
+  --space-7: 80px;   /* 超大间距 · 板块分隔 */
+
+  /* Component sizes */
+  --nav-height: 64px;
+  --nav-height-scrolled: 56px;
+  --banner-height: 480px;
+  --footer-min: 240px;
+  --btn-lg-h: 48px;
+  --btn-md-h: 40px;
+  --btn-sm-h: 32px;
+  --input-h: 40px;
+
+  /* Border radius */
+  --radius-card-lg: 16px;
+  --radius-card-md: 12px;
+  --radius-btn: 8px;
+  --radius-tag: 4px;
+
+  /* Content width */
+  --content-max: 1200px;
+}
+
+/* ===== Standard page container ===== */
+.page-container {
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 1280px) {
+  .page-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* ===== Section vertical spacing ===== */
+.section-block {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .section-block {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+  }
+}
+
+/* ===== Standard card component · 粗野字体风格 ===== */
+.std-card {
+  background: #141414;
+  border-radius: 0;
+  padding: var(--space-3);
+  border: 2px solid rgba(242,238,229, 0.18);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .std-card {
+    padding: var(--space-4);
+  }
+}
+
+/* ===== Standard button components · 粗野字体风格 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: '"Archivo Black"', '"PingFang SC"', sans-serif;
+  font-weight: 900;
+  border-radius: 0;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.btn-lg {
+  height: var(--btn-lg-h);
+  padding: 0 32px;
+  font-size: 14px;
+}
+
+.btn-md {
+  height: var(--btn-md-h);
+  padding: 0 24px;
+  font-size: 12px;
+}
+
+.btn-sm {
+  height: var(--btn-sm-h);
+  padding: 0 16px;
+  font-size: 10px;
+}
+
+.btn-primary {
+  background: #F2EEE5;
+  color: #0A0A0A;
+  border-color: #F2EEE5;
+}
+
+.btn-primary:hover {
+  background: #C8281C;
+  color: #F2EEE5;
+  border-color: #C8281C;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #F2EEE5;
+  border-color: rgba(242,238,229, 0.45);
+}
+
+.btn-ghost:hover {
+  border-color: #F2EEE5;
+  background: rgba(242,238,229, 0.06);
+}
+
+/* ===== Standard tag/chip component · 粗野字体风格 ===== */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: var(--btn-sm-h);
+  padding: 0 12px;
+  font-size: 11px;
+  line-height: 1;
+  border-radius: 0;
+  border: 2px solid rgba(242,238,229, 0.35);
+  color: #F2EEE5;
+  background: transparent;
+  white-space: nowrap;
+  font-family: '"JetBrains Mono"', ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ===== Standard grid: 12-col with 24px gutter ===== */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.grid-cols-sub {
+  grid-column: span 6;
+}
+
+.grid-cols-main {
+  grid-column: span 6;
+}
+
+@media (min-width: 768px) {
+  .grid-cols-sub {
+    grid-column: span 5;
+  }
+  .grid-cols-main {
+    grid-column: span 7;
+  }
+}
+
+/* ===== Standard form inputs · 粗野字体风格 ===== */
+.input {
+  height: var(--input-h);
+  border-radius: 0;
+  border: 2px solid rgba(242,238,229, 0.3);
+  background: #141414;
+  color: #F2EEE5;
+  font-size: 14px;
+  padding: 0 16px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: '"JetBrains Mono"', ui-monospace, monospace;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #F2EEE5;
+  box-shadow: 4px 4px 0 0 rgba(200,40,28,1);
+}
+
+/* ===== Standard text hierarchy ===== */
+.text-h1 {
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.text-h2 {
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.text-body {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-micro {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* ===== Card image ratio: 4:3 / 1:1 ===== */
+.aspect-card {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-banner {
+  aspect-ratio: 16 / 9;
+}
+
+/* ===== Consistent interaction transitions ===== */
+.interact {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interact:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== Scroll reveal optimized ===== */
+.sr-hidden {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.sr-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* =========================================================
+   BRUTALIST TYPE · 粗野字体组件库
+   印章 / 撕纸 / 泼墨 / 涂鸦 / 巨字海报
+   ========================================================= */
+
+/* ===== Brut Stamp · 暗红印章压痕 ===== */
+.brut-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-family: '"Archivo Black"', '"PingFang SC"', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #F2EEE5;
+  background: #C8281C;
+  border: 2px solid #0A0A0A;
+  transform: rotate(-3deg);
+  box-shadow: 4px 4px 0 0 rgba(10,10,10,0.9);
+  pointer-events: none;
+}
+.brut-stamp::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -1.5 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.brut-stamp--blood { background: #C8281C; }
+.brut-stamp--marigold { background: #E85D2F; }
+.brut-stamp--ochre { background: #D4B896; color: #0A0A0A; }
+.brut-stamp--paper { background: #F2EEE5; color: #0A0A0A; }
+.brut-stamp--ink { background: #0A0A0A; color: #F2EEE5; }
+
+/* ===== Brut Torn Edge · 撕纸边缘（不规则毛边） ===== */
+.brut-torn-top,
+.brut-torn-bottom,
+.brut-torn-both {
+  position: relative;
+}
+.brut-torn-top::before,
+.brut-torn-bottom::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 14' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,7 L8,3 L16,9 L24,4 L32,10 L40,5 L48,11 L56,6 L64,2 L72,9 L80,4 L88,11 L96,5 L104,10 L112,3 L120,8 L128,4 L136,11 L144,6 L152,3 L160,9 L168,5 L176,10 L184,4 L192,9 L200,6 L200,14 L0,14 Z' fill='%230A0A0A'/%3E%3C/svg%3E");
+  background-size: 200px 14px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+  z-index: 2;
+}
+.brut-torn-top::before { top: -13px; }
+.brut-torn-bottom::after { bottom: -13px; }
+.brut-torn-both::before,
+.brut-torn-both::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 14' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,7 L8,3 L16,9 L24,4 L32,10 L40,5 L48,11 L56,6 L64,2 L72,9 L80,4 L88,11 L96,5 L104,10 L112,3 L120,8 L128,4 L136,11 L144,6 L152,3 L160,9 L168,5 L176,10 L184,4 L192,9 L200,6 L200,14 L0,14 Z' fill='%230A0A0A'/%3E%3C/svg%3E");
+  background-size: 200px 14px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+  z-index: 2;
+}
+.brut-torn-both::before { top: -13px; }
+.brut-torn-both::after { bottom: -13px; transform: rotate(180deg); }
+
+/* ===== Brut Ink Splash · 泼墨溅点装饰 ===== */
+.brut-ink-splash {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+  filter: drop-shadow(2px 2px 0 rgba(10,10,10,0.4));
+}
+.brut-ink-splash--blood {
+  background:
+    radial-gradient(circle at 30% 30%, #C8281C 0%, #C8281C 50%, transparent 70%),
+    radial-gradient(circle at 70% 60%, #8E1A12 0%, transparent 40%);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  mix-blend-mode: multiply;
+}
+.brut-ink-splash--ink {
+  background:
+    radial-gradient(circle at 40% 40%, #0A0A0A 0%, #0A0A0A 50%, transparent 70%),
+    radial-gradient(circle at 80% 30%, #1C1C1C 0%, transparent 40%);
+  border-radius: 50% 60% 40% 70% / 60% 40% 60% 40%;
+}
+.brut-ink-splash--marigold {
+  background:
+    radial-gradient(circle at 50% 50%, #E85D2F 0%, #E85D2F 50%, transparent 70%);
+  border-radius: 70% 30% 60% 40% / 40% 50% 50% 60%;
+  mix-blend-mode: screen;
+  opacity: 0.65;
+}
+
+/* ===== Brut Scrawl · 涂鸦手写体（章节穿插） ===== */
+.brut-scrawl {
+  font-family: 'Caveat', 'Permanent Marker', 'Bangers', cursive;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.92;
+  color: #C8281C;
+  transform: rotate(-3deg);
+  text-shadow: 2px 2px 0 rgba(10,10,10,0.45);
+  user-select: none;
+  letter-spacing: -0.01em;
+}
+.brut-scrawl--paper { color: #F2EEE5; }
+.brut-scrawl--marigold { color: #E85D2F; }
+.brut-scrawl--ochre { color: #D4B896; }
+
+/* ===== Brut Label · 粗野标签（章节编号 · 粗描边字体） ===== */
+.brut-label {
+  font-family: '"Archivo Black"', '"Cabinet Grotesk"', '"PingFang SC"', 'sans-serif';
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8A8A8A;
+  line-height: 1.1;
+}
+.brut-label::before {
+  display: none;
+}
+
+/* ===== Brut Press Card · 粗野卡片 · 米白 offset 阴影 ===== */
+.brut-press-card {
+  position: relative;
+  background: #141414;
+  border: 2px solid #F2EEE5;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brut-press-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 0 #C8281C;
+}
+
+/* ===== Brut Paper · 米色纸张底纹 ===== */
+.brut-paper-bg {
+  position: relative;
+  background: #F2EEE5;
+  color: #0A0A0A;
+}
+.brut-paper-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+}
+
+/* ===== Brut Marquee · 粗野跑马灯（章节分隔） ===== */
+.brut-marquee-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  border-top: 2px solid #F2EEE5;
+  border-bottom: 2px solid #F2EEE5;
+  background: #0A0A0A;
+}
+.brut-marquee {
+  display: inline-flex;
+  width: max-content;
+  gap: 3rem;
+  padding: 1.2rem 0;
+  align-items: center;
+  animation: brut-marquee 35s linear infinite;
+}
+.brut-marquee--reverse {
+  animation: brut-marquee-rev 35s linear infinite;
+}
+.brut-marquee-item {
+  font-family: '"Archivo Black"', sans-serif;
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 44px);
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: #F2EEE5;
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+}
+.brut-marquee-item--blood { color: #C8281C; }
+.brut-marquee-item--marigold { color: #E85D2F; }
+.brut-marquee-item--ochre { color: #D4B896; }
+.brut-marquee-sep {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: #C8281C;
+  flex-shrink: 0;
+}
+@keyframes brut-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes brut-marquee-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ===== Brut Serial · 大序号双色错位（暗红+米白） ===== */
+.brut-serial {
+  position: relative;
+  display: inline-block;
+  font-family: '"Archivo Black"', sans-serif;
+  font-weight: 900;
+  font-size: clamp(56px, 8vw, 140px);
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  color: rgba(242,238,229,0.95);
+  text-shadow:
+    3px 0 0 rgba(200,40,28,0.7),
+    -3px 0 0 rgba(212,184,150,0.55);
+  user-select: none;
+}
+.brut-serial--ink {
+  text-shadow:
+    3px 0 0 rgba(10,10,10,0.85),
+    -3px 0 0 rgba(200,40,28,0.6);
+}
+
+/* ===== Brut Halftone · 半调网点装饰 ===== */
+.brut-halftone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 2px 2px, rgba(242,238,229,0.18) 1px, transparent 1.5px),
+    radial-gradient(circle at 6px 6px, rgba(242,238,229,0.12) 0.8px, transparent 1.2px);
+  background-size: 8px 8px, 12px 12px;
+  mix-blend-mode: overlay;
+}
+.brut-halftone--blood {
+  background-image:
+    radial-gradient(circle at 2px 2px, rgba(200,40,28,0.4) 1px, transparent 1.5px);
+  background-size: 10px 10px;
+  mix-blend-mode: multiply;
+}
+
+/* ===== Brut Tape · 胶带装饰（贴纸角） ===== */
+.brut-tape {
+  position: absolute;
+  width: 80px;
+  height: 22px;
+  background: rgba(212,184,150,0.5);
+  border: 1px solid rgba(10,10,10,0.2);
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 1px 4px rgba(10,10,10,0.3);
+}
+.brut-tape::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.brut-tape--blood { background: rgba(200,40,28,0.65); }
+.brut-tape--marigold { background: rgba(232,93,47,0.55); }
+
+/* ===== Brut Grid Lines · 粗野网格背景线（仅装饰） ===== */
+.brut-grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(242,238,229,0.04) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(242,238,229,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
